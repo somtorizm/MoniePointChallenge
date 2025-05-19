@@ -1,4 +1,4 @@
-package com.vectorinc.moniepointchallenge.ui.theme
+package com.vectorinc.moniepointchallenge.theme
 
 import android.app.Activity
 import android.os.Build

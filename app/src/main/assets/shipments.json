@@ -1,0 +1,14 @@
+{
+  "shipment": {
+    "number": "NEJ20089934122231",
+    "sender": "Jakarta, Indonesia",
+    "receiver": "Bandung, Indonesia",
+    "eta": "2 day - 3 days",
+    "status": "Waiting to collect"
+  },
+  "vehicles": [
+    {"name": "Ocean Freight", "description": "International", "icon": "sailing"},
+    {"name": "Cargo Freight", "description": "Reliable", "icon": "local_shipping"},
+    {"name": "Air Freight", "description": "Fast", "icon": "airplanemode_active"}
+  ]
+}
