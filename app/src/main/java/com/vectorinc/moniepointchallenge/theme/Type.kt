@@ -1,4 +1,4 @@
-package com.vectorinc.moniepointchallenge.ui.theme
+package com.vectorinc.moniepointchallenge.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
