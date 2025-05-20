@@ -30,7 +30,7 @@ fun MoniePointNavHost(
     modifier: Modifier = Modifier
 ) {
     NavHost(navController = navController, startDestination = Screen.Home.route, modifier = modifier) {
-        composable(Screen.Home.route) { HomeScreen() }
+        composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.Calculate.route) { CalculateScreen() }
         composable(Screen.Shipping.route) { ShippingScreen() }
         composable(Screen.Profile.route) { ProfileScreen() }
