@@ -6,9 +6,303 @@
     "eta": "2 day - 3 days",
     "status": "Waiting to collect"
   },
+  "shipments": [
+    {
+      "number": "RCPT00001",
+      "sender": "City1A",
+      "receiver": "City1B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00002",
+      "sender": "City2A",
+      "receiver": "City2B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00003",
+      "sender": "City3A",
+      "receiver": "City3B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00004",
+      "sender": "City4A",
+      "receiver": "City4B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00005",
+      "sender": "City5A",
+      "receiver": "City5B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00006",
+      "sender": "City6A",
+      "receiver": "City6B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00007",
+      "sender": "City7A",
+      "receiver": "City7B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00008",
+      "sender": "City8A",
+      "receiver": "City8B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00009",
+      "sender": "City9A",
+      "receiver": "City9B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00010",
+      "sender": "City10A",
+      "receiver": "City10B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00011",
+      "sender": "City11A",
+      "receiver": "City11B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00012",
+      "sender": "City12A",
+      "receiver": "City12B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00013",
+      "sender": "City13A",
+      "receiver": "City13B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00014",
+      "sender": "City14A",
+      "receiver": "City14B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00015",
+      "sender": "City15A",
+      "receiver": "City15B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00016",
+      "sender": "City16A",
+      "receiver": "City16B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00017",
+      "sender": "City17A",
+      "receiver": "City17B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00018",
+      "sender": "City18A",
+      "receiver": "City18B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00019",
+      "sender": "City19A",
+      "receiver": "City19B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00020",
+      "sender": "City20A",
+      "receiver": "City20B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00021",
+      "sender": "City21A",
+      "receiver": "City21B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00022",
+      "sender": "City22A",
+      "receiver": "City22B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00023",
+      "sender": "City23A",
+      "receiver": "City23B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00024",
+      "sender": "City24A",
+      "receiver": "City24B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00025",
+      "sender": "City25A",
+      "receiver": "City25B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00026",
+      "sender": "City26A",
+      "receiver": "City26B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00027",
+      "sender": "City27A",
+      "receiver": "City27B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00028",
+      "sender": "City28A",
+      "receiver": "City28B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00029",
+      "sender": "City29A",
+      "receiver": "City29B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00030",
+      "sender": "City30A",
+      "receiver": "City30B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00031",
+      "sender": "City31A",
+      "receiver": "City31B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00032",
+      "sender": "City32A",
+      "receiver": "City32B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00033",
+      "sender": "City33A",
+      "receiver": "City33B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00034",
+      "sender": "City34A",
+      "receiver": "City34B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00035",
+      "sender": "City35A",
+      "receiver": "City35B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00036",
+      "sender": "City36A",
+      "receiver": "City36B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00037",
+      "sender": "City37A",
+      "receiver": "City37B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00038",
+      "sender": "City38A",
+      "receiver": "City38B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00039",
+      "sender": "City39A",
+      "receiver": "City39B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    },
+    {
+      "number": "RCPT00040",
+      "sender": "City40A",
+      "receiver": "City40B",
+      "eta": "2 day - 3 days",
+      "status": "Waiting to collect"
+    }
+  ],
   "vehicles": [
-    {"name": "Ocean Freight", "description": "International", "icon": "ship"},
-    {"name": "Cargo Freight", "description": "Reliable", "icon": "truck"},
-    {"name": "Air Freight", "description": "Fast", "icon": "airplane"}
+    {
+      "name": "Ocean Freight",
+      "description": "International",
+      "icon": "ship"
+    },
+    {
+      "name": "Cargo Freight",
+      "description": "Reliable",
+      "icon": "truck"
+    },
+    {
+      "name": "Air Freight",
+      "description": "Fast",
+      "icon": "airplane"
+    }
   ]
 }

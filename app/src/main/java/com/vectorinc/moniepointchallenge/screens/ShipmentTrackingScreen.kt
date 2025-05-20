@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Inventory
 import androidx.compose.material.icons.filled.Print
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,7 +49,6 @@ import com.vectorinc.moniepointchallenge.R
 import com.vectorinc.moniepointchallenge.data.model.ShipmentListItem
 import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
-
 
 @Composable
 fun ShipmentTrackingScreen(
@@ -85,18 +85,27 @@ fun ShipmentTrackingScreen(
             )
         }
 
-        Column(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White, shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp))
-                .padding(top = 16.dp)
+                .padding(10.dp),
+            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
             LazyColumn(
+                modifier = Modifier.fillMaxWidth(),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-
+                verticalArrangement = Arrangement.spacedBy(0.dp)
             ) {
-                items(shipments.value.filter { it.title.contains(query, ignoreCase = true) }) { item ->
+                items(
+                    shipments.value
+                        .filter {
+                            it.title.contains(query, ignoreCase = true) ||
+                                    it.trackingCode.contains(query, ignoreCase = true)
+                        }
+                        .take(20)
+                ) { item ->
                     ShipmentCard(item)
                 }
             }
@@ -107,20 +116,22 @@ fun ShipmentTrackingScreen(
 
 @Composable
 private fun ShipmentCard(item: ShipmentListItem) {
-    Card(
+    Column (
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        shape = MaterialTheme.shapes.medium
     ) {
         Row(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp, horizontal = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 Icons.Filled.Inventory,
                 contentDescription = null,
                 tint = Color.White,
-                modifier = Modifier.size(40.dp).background(TopSectionPurple, shape = CircleShape)
+                modifier = Modifier
+                    .size(40.dp)
+                    .background(TopSectionPurple, shape = CircleShape)
                     .padding(10.dp)
             )
 
@@ -131,6 +142,8 @@ private fun ShipmentCard(item: ShipmentListItem) {
                 Text(item.route, style = MaterialTheme.typography.bodySmall)
             }
         }
+
+        Divider(modifier = Modifier.fillMaxWidth(), thickness = 0.5.dp, color = Color.LightGray)
     }
 }
 

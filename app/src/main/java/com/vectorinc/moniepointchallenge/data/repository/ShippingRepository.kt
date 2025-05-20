@@ -31,12 +31,22 @@ class ShippingRepositoryImpl @Inject constructor(
 
     override fun loadShipmentList(): List<ShipmentListItem> {
         val info = loadShippingInfo()
-        return listOf(
-            ShipmentListItem(
-                title = "Shipment from ${info.shipment.sender}",
-                trackingCode = "#${info.shipment.number}",
-                route = "${info.shipment.sender} \u2192 ${info.shipment.receiver}"
+        return if (info.shipments.isNotEmpty()) {
+            info.shipments.map { shipment ->
+                ShipmentListItem(
+                    title = "Shipment from ${shipment.sender}",
+                    trackingCode = "#${shipment.number}",
+                    route = "${shipment.sender} \u2192 ${shipment.receiver}"
+                )
+            }
+        } else {
+            listOf(
+                ShipmentListItem(
+                    title = "Shipment from ${info.shipment.sender}",
+                    trackingCode = "#${info.shipment.number}",
+                    route = "${info.shipment.sender} \u2192 ${info.shipment.receiver}"
+                )
             )
-        )
+        }
     }
 }

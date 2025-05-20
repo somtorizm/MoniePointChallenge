@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ShippingInfo(
     val shipment: Shipment,
-    val vehicles: List<VehicleOption>
+    val vehicles: List<VehicleOption>,
+    val shipments: List<Shipment> = emptyList()
 )

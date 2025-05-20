@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -149,12 +150,50 @@ private fun TopHeader(onSearchClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        RoundedSearchBar(
-            query = query,
-            onQueryChange = setQuery,
-            onPrintClick = onSearchClick
-        )
+        SearchPlaceholder(onClick = onSearchClick)
 
+    }
+}
+
+@Composable
+fun SearchPlaceholder(onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(58.dp)
+            .clip(RoundedCornerShape(24.dp))
+            .background(Color.White)
+            .clickable { onClick() }
+            .padding(horizontal = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = "Search Icon",
+                tint = TopSectionPurple,
+                modifier = Modifier.size(20.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "Enter the receipt number ...",
+                color = Color.Gray,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
+
+        IconButton(
+            onClick = onClick,
+            modifier = Modifier
+                .size(36.dp)
+                .background(OrangePrimary, shape = CircleShape)
+        ) {
+            Image(
+                painter = painterResource(R.drawable.barcode_scan),
+                contentDescription = "Print Icon",
+            )
+        }
     }
 }
 
@@ -174,20 +213,23 @@ fun RoundedSearchBar(
     ) {
         Spacer(modifier = Modifier.width(8.dp))
 
-        Icon(
-            imageVector = Icons.Default.Search,
-            contentDescription = "Search Icon",
-            tint = TopSectionPurple,
-            modifier = Modifier.size(20.dp)
-        )
-
-        Spacer(modifier = Modifier.width(8.dp))
-
-        Box(modifier = Modifier.weight(1f)) {
-            if (query.isEmpty()) {
-                Text("Enter the receipt number ...", color = Color.Gray)
+        BasicTextField(
+            value = query,
+            onValueChange = onQueryChange,
+            singleLine = true,
+            modifier = Modifier
+                .weight(1f)
+                .padding(vertical = 8.dp),
+            decorationBox = { innerTextField ->
+                if (query.isEmpty()) {
+                    Text(
+                        text = "Enter the receipt number ...",
+                        color = Color.Gray
+                    )
+                }
+                innerTextField()
             }
-        }
+        )
 
         IconButton(
             onClick = onPrintClick,
@@ -202,8 +244,6 @@ fun RoundedSearchBar(
         }
     }
 }
-
-
 
 @Composable
 fun TrackingSection(
