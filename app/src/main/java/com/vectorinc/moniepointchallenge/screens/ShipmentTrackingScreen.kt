@@ -1,9 +1,12 @@
 package com.vectorinc.moniepointchallenge.screens
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import com.vectorinc.moniepointchallenge.viewmodel.ShipmentTrackingViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -31,13 +34,16 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -56,6 +62,17 @@ fun ShipmentTrackingScreen(
     viewModel: ShipmentTrackingViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
 ) {
+    val backButtonVisible = remember { mutableStateOf(false) }
+    val scale by animateFloatAsState(
+        targetValue = if (backButtonVisible.value) 1f else 0.5f,
+        animationSpec = tween(400),
+        label = "BackButtonScale"
+    )
+
+    LaunchedEffect(Unit) {
+        backButtonVisible.value = true
+    }
+
     val (query, setQuery) = remember { mutableStateOf("") }
     val shipments = viewModel.shipment.collectAsState()
 
@@ -70,7 +87,12 @@ fun ShipmentTrackingScreen(
         ) {
             IconButton(onClick = {
                 navController.popBackStack()
-            }) {
+            },
+                modifier = Modifier.graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    alpha = if (backButtonVisible.value) 1f else 0f
+                }) {
                 Icon(
                     painter = painterResource(id = R.drawable.outline_arrow_back_ios_24),
                     contentDescription = "Back",
@@ -78,11 +100,30 @@ fun ShipmentTrackingScreen(
                 )
             }
 
-            RoundedSearchBar(
-                query = query,
-                onQueryChange = setQuery,
-                onPrintClick = { /* Print handler */ }
+            val searchBarVisible = remember { mutableStateOf(false) }
+            val offsetX: Float by animateFloatAsState(
+                targetValue = if (searchBarVisible.value) 0f else -100f,
+                animationSpec = tween(500),
+                label = "SearchBarSlideIn"
             )
+
+            LaunchedEffect(Unit) {
+                searchBarVisible.value = true
+            }
+
+            Box(
+                modifier = Modifier
+                    .graphicsLayer {
+                        translationX = offsetX
+                        alpha = if (searchBarVisible.value) 1f else 0f
+                    }
+            ) {
+                RoundedSearchBar(
+                    query = query,
+                    onQueryChange = setQuery,
+                    onPrintClick = { /* Print handler */ }
+                )
+            }
         }
 
         Card(
