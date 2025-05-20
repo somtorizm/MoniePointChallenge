@@ -2,6 +2,7 @@ package com.vectorinc.moniepointchallenge.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocalShipping
 import androidx.compose.material.icons.filled.Person
@@ -17,12 +18,17 @@ import com.vectorinc.moniepointchallenge.screens.HomeScreen
 import com.vectorinc.moniepointchallenge.screens.ProfileScreen
 import com.vectorinc.moniepointchallenge.screens.ShippingScreen
 
-sealed class Screen(val route: String, val label: String, val icon: ImageVector) {
-    data object Home : Screen("home", "Home", Icons.Default.Home)
-    data object Calculate : Screen("calculate", "Calculate", Icons.Default.Calculate)
-    data object Shipping : Screen("shipping", "Shipment", Icons.Default.LocalShipping)
-    data object Profile : Screen("profile", "Profile", Icons.Default.Person)
+sealed class Screen(
+    val route: String,
+    val label: String,
+    val icon: ImageVector
+) {
+    object Home : Screen("home", "Home", Icons.Default.Home)
+    object Calculate : Screen("calculate", "Calculate", Icons.Default.Calculate)
+    object Shipping : Screen("shipping", "Shipment", Icons.Default.History)
+    object Profile : Screen("profile", "Profile", Icons.Default.Person)
 }
+
 
 @Composable
 fun MoniePointNavHost(

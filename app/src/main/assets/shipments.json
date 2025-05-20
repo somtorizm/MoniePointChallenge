@@ -7,8 +7,8 @@
     "status": "Waiting to collect"
   },
   "vehicles": [
-    {"name": "Ocean Freight", "description": "International", "icon": "sailing"},
-    {"name": "Cargo Freight", "description": "Reliable", "icon": "local_shipping"},
-    {"name": "Air Freight", "description": "Fast", "icon": "airplanemode_active"}
+    {"name": "Ocean Freight", "description": "International", "icon": "ship"},
+    {"name": "Cargo Freight", "description": "Reliable", "icon": "truck"},
+    {"name": "Air Freight", "description": "Fast", "icon": "airplane"}
   ]
 }
