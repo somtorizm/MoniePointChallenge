@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -116,11 +117,11 @@ private fun TopHeader(onSearchClick: () -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = Icons.Default.AccountCircle,
+                Image(
+                    painter = painterResource(R.drawable.user),
                     contentDescription = null,
-                    tint = Color.White,
                     modifier = Modifier.size(40.dp)
+                        .clip(CircleShape)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Column {
@@ -395,44 +396,48 @@ fun VehicleCard(vehicle: VehicleOption) {
 
     Card(
         modifier = Modifier
-            .width(210.dp)
+            .width(250.dp)
             .height(210.dp),
         elevation = CardDefaults.cardElevation(1.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Column(
-            modifier = Modifier.padding(12.dp),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column {
-                Text(
-                    text = vehicle.name,
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Text(
-                    text = vehicle.description,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
+        Box() {
             Image(
                 painter = painterResource(id = vehicle.iconRes),
                 contentDescription = vehicle.description,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(100.dp)
+                    .fillMaxSize()
+                    .padding(25.dp)
                     .graphicsLayer {
                         translationX = -offsetY
                         translationY = offsetX
 
                     }
             )
+
+
+            Column(
+                modifier = Modifier.padding(12.dp),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text(
+                        text = vehicle.name,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        text = vehicle.description,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Gray
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
+
     }
 }
 
