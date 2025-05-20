@@ -17,8 +17,13 @@ fun HomeScreen(
     val vehicles = viewModel.vehicles.collectAsState().value
 
     TrackingDashboardScreen(
+        navController = navController,
         shipment = shipment,
         vehicles = vehicles,
-        onSearchClick = { navController.navigate(Screen.Tracking.route) }
+        onSearchClick = {
+            navController.navigate(Screen.Tracking.route) {
+                launchSingleTop = true
+            }
+        }
     )
 }

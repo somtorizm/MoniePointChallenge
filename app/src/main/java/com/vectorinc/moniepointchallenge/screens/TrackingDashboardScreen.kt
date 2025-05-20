@@ -41,6 +41,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,6 +53,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.vectorinc.moniepointchallenge.R
 import com.vectorinc.moniepointchallenge.data.model.Shipment
 import com.vectorinc.moniepointchallenge.data.model.VehicleOption
@@ -67,6 +70,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun TrackingDashboardScreen(
+    navController: NavController,
     shipment: Shipment,
     vehicles: List<VehicleOption>,
     onSearchClick: () -> Unit,
@@ -79,7 +83,13 @@ fun TrackingDashboardScreen(
         label = "TrackingSlideIn"
     )
 
-    val animateOut = remember { mutableStateOf(false) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val animateOut = rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(navBackStackEntry) {
+        animateOut.value = false
+    }
+
     val headerOffsetY by animateFloatAsState(
         targetValue = if (animateOut.value) -200f else 0f,
         animationSpec = tween(500),
@@ -558,12 +568,4 @@ val sampleVehicles = listOf(
     VehicleOption("Cargo Freight", "Reliable", "local_shipping", R.drawable.truck),
     VehicleOption("Air Freight", "Fast", "airplanemode_active", R.drawable.airplane)
 )
-
-@Preview(showBackground = true)
-@Composable
-private fun TrackingDashboardPreview() {
-    MoniePointChallengeTheme  {
-        TrackingDashboardScreen(sampleShipment, sampleVehicles, onSearchClick = {})
-    }
-}
 
