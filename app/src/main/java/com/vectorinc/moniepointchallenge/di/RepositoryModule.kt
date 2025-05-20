@@ -2,6 +2,7 @@ package com.vectorinc.moniepointchallenge.di
 
 import android.content.Context
 import com.vectorinc.moniepointchallenge.model.Shipment
+import com.vectorinc.moniepointchallenge.model.ShipmentListItem
 import com.vectorinc.moniepointchallenge.model.ShippingInfo
 import com.vectorinc.moniepointchallenge.model.VehicleOption
 import dagger.Module
@@ -41,5 +42,19 @@ object RepositoryModule {
             )
         }
         return ShippingInfo(shipment, vehicles)
+    }
+
+    @Provides
+    @Singleton
+    fun provideShipmentList(@ApplicationContext context: Context): List<ShipmentListItem> {
+        val json = context.assets.open("shipments.json").bufferedReader().use { it.readText() }
+        val obj = JSONObject(json)
+        val shipmentObj = obj.getJSONObject("shipment")
+        val item = ShipmentListItem(
+            title = "Shipment from ${shipmentObj.getString("sender")}",
+            trackingCode = "#" + shipmentObj.getString("number"),
+            route = "${shipmentObj.getString("sender")} \u2192 ${shipmentObj.getString("receiver")}"
+        )
+        return listOf(item)
     }
 }
