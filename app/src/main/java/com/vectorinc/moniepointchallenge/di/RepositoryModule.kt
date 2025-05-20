@@ -33,11 +33,17 @@ object RepositoryModule {
         val vehicles = mutableListOf<VehicleOption>()
         for (i in 0 until vehiclesArray.length()) {
             val v = vehiclesArray.getJSONObject(i)
+            val iconName = v.getString("icon")
+
+            val drawable = context.resources.getIdentifier(
+                iconName, "drawable", context.packageName
+            )
             vehicles.add(
                 VehicleOption(
                     name = v.getString("name"),
                     description = v.getString("description"),
-                    iconName = v.getString("icon")
+                    iconName = v.getString("icon"),
+                    iconRes = drawable
                 )
             )
         }

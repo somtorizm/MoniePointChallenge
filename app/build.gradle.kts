@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.androidx.material.icons.extended.android)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.accompanist.systemuicontroller)
+    
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
