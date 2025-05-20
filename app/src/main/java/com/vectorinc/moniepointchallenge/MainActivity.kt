@@ -5,9 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
+import com.vectorinc.moniepointchallenge.ui.BottomNavigationBar
 import com.vectorinc.moniepointchallenge.ui.MoniePointNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,8 +21,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MoniePointChallengeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MoniePointNavHost(modifier = Modifier.fillMaxSize())
+                val navController = rememberNavController()
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = { BottomNavigationBar(navController) }
+                ) { padding ->
+                    MoniePointNavHost(
+                        navController = navController,
+                        modifier = Modifier
+                            .padding(padding)
+                            .fillMaxSize()
+                    )
                 }
             }
         }
