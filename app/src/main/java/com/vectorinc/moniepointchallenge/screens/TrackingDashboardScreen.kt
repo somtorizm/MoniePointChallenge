@@ -53,20 +53,21 @@ import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
 fun TrackingDashboardScreen(
     shipment: Shipment,
     vehicles: List<VehicleOption>,
+    onSearchClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier
             .verticalScroll(rememberScrollState())
     ) {
-        TopHeader()
+        TopHeader(onSearchClick)
         TrackingSection(shipment)
         AvailableVehiclesSection(vehicles)
     }
 }
 
 @Composable
-private fun TopHeader() {
+private fun TopHeader(onSearchClick: () -> Unit) {
     val (query, setQuery) = remember { mutableStateOf("") }
 
     Column(
@@ -91,11 +92,11 @@ private fun TopHeader() {
                 Text("Wertheimer, Illinois", color = Color.White)
             }
             FilledIconButton(
-                onClick = {},
+                onClick = onSearchClick,
                 colors = IconButtonDefaults.filledIconButtonColors(containerColor = OrangePrimary)
             ) {
                 Icon(
-                    imageVector = Icons.Default.Star,
+                    imageVector = Icons.Default.Search,
                     contentDescription = null,
                     tint = Color.White
                 )
@@ -222,6 +223,6 @@ val sampleVehicles = listOf(
 @Composable
 private fun TrackingDashboardPreview() {
     MoniePointChallengeTheme  {
-        TrackingDashboardScreen(sampleShipment, sampleVehicles)
+        TrackingDashboardScreen(sampleShipment, sampleVehicles, {})
     }
 }
