@@ -30,6 +30,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -44,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.vectorinc.moniepointchallenge.R
-import com.vectorinc.moniepointchallenge.model.ShipmentListItem
+import com.vectorinc.moniepointchallenge.data.model.ShipmentListItem
 import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
 
@@ -56,14 +57,14 @@ fun ShipmentTrackingScreen(
     modifier: Modifier = Modifier,
 ) {
     val (query, setQuery) = remember { mutableStateOf("") }
-    val shipments = viewModel.shipments
+    val shipments = viewModel.shipment.collectAsState()
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(TopSectionPurple)
-                .padding(horizontal = 12.dp, vertical = 12.dp),
+                .padding(horizontal = 12.dp, vertical = 15.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -92,9 +93,10 @@ fun ShipmentTrackingScreen(
         ) {
             LazyColumn(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+
             ) {
-                items(shipments.filter { it.title.contains(query, ignoreCase = true) }) { item ->
+                items(shipments.value.filter { it.title.contains(query, ignoreCase = true) }) { item ->
                     ShipmentCard(item)
                 }
             }
@@ -117,9 +119,11 @@ private fun ShipmentCard(item: ShipmentListItem) {
             Icon(
                 Icons.Filled.Inventory,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(40.dp)
+                tint = Color.White,
+                modifier = Modifier.size(40.dp).background(TopSectionPurple, shape = CircleShape)
+                    .padding(10.dp)
             )
+
             Spacer(modifier = Modifier.size(12.dp))
             Column {
                 Text(item.title, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
@@ -130,21 +134,5 @@ private fun ShipmentCard(item: ShipmentListItem) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun ShipmentTrackingScreenPreview() {
-    val sample = listOf(
-        ShipmentListItem("Summer linen jacket", "#NEJ20089934122231", "Barcelona \u2192 Paris"),
-        ShipmentListItem("Winter coat", "#NEJ20089934122232", "London \u2192 Berlin"),
-        ShipmentListItem("Sneakers", "#NEJ20089934122233", "Rome \u2192 Madrid")
-    )
-    val context = LocalContext.current
-    MoniePointChallengeTheme {
-        ShipmentTrackingScreen(
-            navController = NavController(context),
-            viewModel = ShipmentTrackingViewModel(sample)
-        )
-    }
-}
 
 

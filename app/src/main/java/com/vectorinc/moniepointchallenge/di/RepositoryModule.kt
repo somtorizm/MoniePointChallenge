@@ -1,10 +1,12 @@
 package com.vectorinc.moniepointchallenge.di
 
 import android.content.Context
-import com.vectorinc.moniepointchallenge.model.Shipment
-import com.vectorinc.moniepointchallenge.model.ShipmentListItem
-import com.vectorinc.moniepointchallenge.model.ShippingInfo
-import com.vectorinc.moniepointchallenge.model.VehicleOption
+import com.vectorinc.moniepointchallenge.data.model.Shipment
+import com.vectorinc.moniepointchallenge.data.model.ShipmentListItem
+import com.vectorinc.moniepointchallenge.data.model.ShippingInfo
+import com.vectorinc.moniepointchallenge.data.model.VehicleOption
+import com.vectorinc.moniepointchallenge.data.repository.ShippingRepository
+import com.vectorinc.moniepointchallenge.data.repository.ShippingRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,51 +18,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
-    @Provides
-    @Singleton
-    fun provideShippingInfo(@ApplicationContext context: Context): ShippingInfo {
-        val json = context.assets.open("shipments.json").bufferedReader().use { it.readText() }
-        val obj = JSONObject(json)
-        val shipmentObj = obj.getJSONObject("shipment")
-        val shipment = Shipment(
-            number = shipmentObj.getString("number"),
-            sender = shipmentObj.getString("sender"),
-            receiver = shipmentObj.getString("receiver"),
-            eta = shipmentObj.getString("eta"),
-            status = shipmentObj.getString("status")
-        )
-        val vehiclesArray = obj.getJSONArray("vehicles")
-        val vehicles = mutableListOf<VehicleOption>()
-        for (i in 0 until vehiclesArray.length()) {
-            val v = vehiclesArray.getJSONObject(i)
-            val iconName = v.getString("icon")
-
-            val drawable = context.resources.getIdentifier(
-                iconName, "drawable", context.packageName
-            )
-            vehicles.add(
-                VehicleOption(
-                    name = v.getString("name"),
-                    description = v.getString("description"),
-                    iconName = v.getString("icon"),
-                    iconRes = drawable
-                )
-            )
-        }
-        return ShippingInfo(shipment, vehicles)
-    }
 
     @Provides
     @Singleton
-    fun provideShipmentList(@ApplicationContext context: Context): List<ShipmentListItem> {
-        val json = context.assets.open("shipments.json").bufferedReader().use { it.readText() }
-        val obj = JSONObject(json)
-        val shipmentObj = obj.getJSONObject("shipment")
-        val item = ShipmentListItem(
-            title = "Shipment from ${shipmentObj.getString("sender")}",
-            trackingCode = "#" + shipmentObj.getString("number"),
-            route = "${shipmentObj.getString("sender")} \u2192 ${shipmentObj.getString("receiver")}"
-        )
-        return listOf(item)
-    }
+    fun provideShippingRepository(
+        @ApplicationContext context: Context
+    ): ShippingRepository = ShippingRepositoryImpl(context)
 }

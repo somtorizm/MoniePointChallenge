@@ -51,8 +51,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vectorinc.moniepointchallenge.R
-import com.vectorinc.moniepointchallenge.model.Shipment
-import com.vectorinc.moniepointchallenge.model.VehicleOption
+import com.vectorinc.moniepointchallenge.data.model.Shipment
+import com.vectorinc.moniepointchallenge.data.model.VehicleOption
 import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
 import com.vectorinc.moniepointchallenge.theme.OrangePrimary
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple

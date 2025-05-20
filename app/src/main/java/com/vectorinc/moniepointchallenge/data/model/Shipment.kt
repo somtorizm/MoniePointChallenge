@@ -1,5 +1,8 @@
-package com.vectorinc.moniepointchallenge.model
+package com.vectorinc.moniepointchallenge.data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Shipment(
     val number: String,
     val sender: String,

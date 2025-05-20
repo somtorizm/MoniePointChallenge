@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dagger.hilt.android)
+    kotlin("plugin.serialization") version "1.9.10"
+
 }
 
 android {
@@ -57,7 +59,8 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.accompanist.systemuicontroller)
-    
+    implementation(libs.kotlinx.serialization.json)
+
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
