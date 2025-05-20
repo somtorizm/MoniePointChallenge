@@ -87,10 +87,22 @@ fun TrackingDashboardScreen(
 @Composable
 private fun TopHeader(onSearchClick: () -> Unit) {
     val (query, setQuery) = remember { mutableStateOf("") }
+    val isVisible = remember { mutableStateOf(false) }
+
+    val offsetY by animateFloatAsState(
+        targetValue = if (isVisible.value) 0f else -100f,
+        animationSpec = tween(durationMillis = 700),
+        label = "SlideDownAnimation"
+    )
+
+    LaunchedEffect(Unit) {
+        isVisible.value = true
+    }
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .graphicsLayer { translationY = offsetY }
             .background(TopSectionPurple)
             .padding(16.dp)
     ) {
