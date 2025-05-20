@@ -1,5 +1,7 @@
 package com.vectorinc.moniepointchallenge.screens
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,6 +35,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -318,19 +322,32 @@ private fun AvailableVehiclesSection(options: List<VehicleOption>) {
 
 @Composable
 fun VehicleCard(vehicle: VehicleOption) {
+    val slideIn = remember { mutableStateOf(false) }
+    val offsetY by animateFloatAsState(
+        targetValue = if (slideIn.value) 0f else -100f,
+        animationSpec = tween(durationMillis = 500),
+        label = "ImageSlideAnimation"
+    )
+    val offsetX by animateFloatAsState(
+        targetValue = if (slideIn.value) 0f else -30f,
+        animationSpec = tween(durationMillis = 500),
+        label = "ImageSlideAnimation"
+    )
+
+    LaunchedEffect(Unit) {
+        slideIn.value = true
+    }
+
     Card(
         modifier = Modifier
             .width(210.dp)
-            .height(200.dp),
+            .height(210.dp),
         elevation = CardDefaults.cardElevation(1.dp),
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        )
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column(
-            modifier = Modifier
-                .padding(12.dp),
+            modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Column {
@@ -353,16 +370,16 @@ fun VehicleCard(vehicle: VehicleOption) {
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(100.dp)
                     .graphicsLayer {
-                        translationX = 100f
+                        translationX = -offsetY
+                        translationY = offsetX
+
                     }
             )
         }
     }
 }
-
-
 
 @Composable
 fun LabelWithValue(
