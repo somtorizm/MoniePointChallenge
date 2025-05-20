@@ -105,6 +105,9 @@ private fun TopHeader(onSearchClick: () -> Unit) {
             .graphicsLayer { translationY = offsetY }
             .background(TopSectionPurple)
             .padding(16.dp)
+            .clickable {
+                onSearchClick()
+            }
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -156,7 +159,7 @@ private fun TopHeader(onSearchClick: () -> Unit) {
 }
 
 @Composable
-private fun RoundedSearchBar(
+fun RoundedSearchBar(
     query: String,
     onQueryChange: (String) -> Unit,
     onPrintClick: () -> Unit

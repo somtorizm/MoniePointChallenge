@@ -33,7 +33,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 
-
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(

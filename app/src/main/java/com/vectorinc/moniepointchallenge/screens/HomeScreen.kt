@@ -15,6 +15,6 @@ fun HomeScreen(
     TrackingDashboardScreen(
         shipment = viewModel.shipment,
         vehicles = viewModel.vehicles,
-        onSearchClick = { navController.navigate(Screen.Calculate.route) }
+        onSearchClick = { navController.navigate(Screen.Tracking.route) }
     )
 }
