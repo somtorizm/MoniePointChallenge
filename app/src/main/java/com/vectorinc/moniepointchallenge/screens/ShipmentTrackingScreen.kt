@@ -70,23 +70,23 @@ fun ShipmentTrackingScreen(
 
     val barOffsetY by animateFloatAsState(
         targetValue = if (isBarVisible.value) 0f else 80f,
-        animationSpec = tween(durationMillis = 600),
+        animationSpec = tween(durationMillis = 800),
         label = "BarSlideUp"
     )
     val barAlpha by animateFloatAsState(
         targetValue = if (isBarVisible.value) 1f else 0f,
-        animationSpec = tween(durationMillis = 600),
+        animationSpec = tween(durationMillis = 800),
         label = "BarFadeIn"
     )
 
     val backOffsetX by animateFloatAsState(
         targetValue = if (isBackVisible.value) 0f else -60f,
-        animationSpec = tween(durationMillis = 500),
+        animationSpec = tween(durationMillis = 800),
         label = "BackSlideRight"
     )
     val backAlpha by animateFloatAsState(
         targetValue = if (isBackVisible.value) 1f else 0f,
-        animationSpec = tween(durationMillis = 500),
+        animationSpec = tween(durationMillis = 800),
         label = "BackFadeIn"
     )
 

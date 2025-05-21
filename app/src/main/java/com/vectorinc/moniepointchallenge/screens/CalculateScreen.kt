@@ -179,7 +179,7 @@ fun CalculateScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color(0xFFF8F7F7))
     ) {
         Box(
             modifier = Modifier
@@ -249,7 +249,7 @@ fun CalculateScreen(
 
             Card(
                 colors = CardDefaults.cardColors(containerColor = Color.White),
-                elevation = CardDefaults.cardElevation(1.dp),
+                elevation = CardDefaults.cardElevation(0.2.dp),
             ) {
                 Column(modifier = Modifier.padding(20.dp)) {
 
@@ -378,7 +378,7 @@ fun CalculateScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             Card(
-                elevation = CardDefaults.cardElevation(1.dp),
+                elevation = CardDefaults.cardElevation(0.2.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White)
             ) {
                 ExposedDropdownMenuBox(

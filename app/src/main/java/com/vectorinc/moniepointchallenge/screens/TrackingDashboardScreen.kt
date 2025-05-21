@@ -103,7 +103,7 @@ fun TrackingDashboardScreen(
     Column(
         modifier
             .verticalScroll(rememberScrollState())
-            .background(Color.White)
+            .background(Color(0xFFF8F7F7))
     ) {
         TopHeader(
             onSearchClick = {
@@ -320,7 +320,7 @@ fun TrackingSection(
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(10.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 0.2.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
@@ -467,7 +467,7 @@ fun VehicleCard(vehicle: VehicleOption) {
         modifier = Modifier
             .width(250.dp)
             .height(210.dp),
-        elevation = CardDefaults.cardElevation(1.dp),
+        elevation = CardDefaults.cardElevation(0.2.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
