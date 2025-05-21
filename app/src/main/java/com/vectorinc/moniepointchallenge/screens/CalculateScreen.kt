@@ -79,13 +79,13 @@ import com.vectorinc.moniepointchallenge.theme.DeepPurple
 import com.vectorinc.moniepointchallenge.theme.OrangePrimary
 import com.vectorinc.moniepointchallenge.theme.SelectedPurple
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
+import com.vectorinc.moniepointchallenge.ui.Screen
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun CalculateScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
-
 ) {
     var sender by remember { mutableStateOf("") }
     var receiver by remember { mutableStateOf("") }
@@ -459,7 +459,11 @@ fun CalculateScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             AnimatedCalculateButton(
-                onClick = { /* Handle calculate */ },
+                onClick = {
+                    navController.navigate(Screen.ShippingCalculateResult.route) {
+                        launchSingleTop = true
+                    }
+                },
             )
         }
     }
