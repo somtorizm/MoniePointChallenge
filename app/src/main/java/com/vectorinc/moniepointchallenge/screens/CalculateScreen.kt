@@ -116,10 +116,6 @@ fun CalculateScreen(
         animateIn.value = true
     }
 
-    LaunchedEffect(Unit) {
-        animateIn.value = true
-    }
-
     val buttonOffsetY by animateFloatAsState(
         targetValue = if (animateIn.value) 0f else 100f,
         animationSpec = tween(500, delayMillis = 800),
