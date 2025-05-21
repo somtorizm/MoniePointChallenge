@@ -104,8 +104,8 @@ private fun TopHeader(onSearchClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .graphicsLayer { translationY = offsetY }
             .background(TopSectionPurple)
+            .graphicsLayer { translationY = offsetY }
             .padding(16.dp)
             .clickable {
                 onSearchClick()
@@ -212,6 +212,13 @@ fun RoundedSearchBar(
             .padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        Icon(
+            imageVector = Icons.Default.Search,
+            contentDescription = "Search Icon",
+            tint = TopSectionPurple,
+            modifier = Modifier.size(20.dp)
+        )
+
         Spacer(modifier = Modifier.width(8.dp))
 
         BasicTextField(
