@@ -1,292 +1,42 @@
 {
   "shipment": {
-    "number": "NEJ20089934122231",
+    "number": "NEJ20089934122201",
     "sender": "Jakarta, Indonesia",
     "receiver": "Bandung, Indonesia",
     "eta": "2 day - 3 days",
     "status": "Waiting to collect"
   },
   "shipments": [
-    {
-      "number": "RCPT00001",
-      "sender": "City1A",
-      "receiver": "City1B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00002",
-      "sender": "City2A",
-      "receiver": "City2B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00003",
-      "sender": "City3A",
-      "receiver": "City3B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00004",
-      "sender": "City4A",
-      "receiver": "City4B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00005",
-      "sender": "City5A",
-      "receiver": "City5B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00006",
-      "sender": "City6A",
-      "receiver": "City6B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00007",
-      "sender": "City7A",
-      "receiver": "City7B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00008",
-      "sender": "City8A",
-      "receiver": "City8B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00009",
-      "sender": "City9A",
-      "receiver": "City9B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00010",
-      "sender": "City10A",
-      "receiver": "City10B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00011",
-      "sender": "City11A",
-      "receiver": "City11B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00012",
-      "sender": "City12A",
-      "receiver": "City12B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00013",
-      "sender": "City13A",
-      "receiver": "City13B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00014",
-      "sender": "City14A",
-      "receiver": "City14B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00015",
-      "sender": "City15A",
-      "receiver": "City15B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00016",
-      "sender": "City16A",
-      "receiver": "City16B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00017",
-      "sender": "City17A",
-      "receiver": "City17B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00018",
-      "sender": "City18A",
-      "receiver": "City18B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00019",
-      "sender": "City19A",
-      "receiver": "City19B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00020",
-      "sender": "City20A",
-      "receiver": "City20B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00021",
-      "sender": "City21A",
-      "receiver": "City21B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00022",
-      "sender": "City22A",
-      "receiver": "City22B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00023",
-      "sender": "City23A",
-      "receiver": "City23B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00024",
-      "sender": "City24A",
-      "receiver": "City24B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00025",
-      "sender": "City25A",
-      "receiver": "City25B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00026",
-      "sender": "City26A",
-      "receiver": "City26B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00027",
-      "sender": "City27A",
-      "receiver": "City27B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00028",
-      "sender": "City28A",
-      "receiver": "City28B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00029",
-      "sender": "City29A",
-      "receiver": "City29B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00030",
-      "sender": "City30A",
-      "receiver": "City30B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00031",
-      "sender": "City31A",
-      "receiver": "City31B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00032",
-      "sender": "City32A",
-      "receiver": "City32B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00033",
-      "sender": "City33A",
-      "receiver": "City33B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00034",
-      "sender": "City34A",
-      "receiver": "City34B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00035",
-      "sender": "City35A",
-      "receiver": "City35B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00036",
-      "sender": "City36A",
-      "receiver": "City36B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00037",
-      "sender": "City37A",
-      "receiver": "City37B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00038",
-      "sender": "City38A",
-      "receiver": "City38B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00039",
-      "sender": "City39A",
-      "receiver": "City39B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    },
-    {
-      "number": "RCPT00040",
-      "sender": "City40A",
-      "receiver": "City40B",
-      "eta": "2 day - 3 days",
-      "status": "Waiting to collect"
-    }
+    { "number": "NEJ20089934122201", "sender": "Atlanta", "receiver": "Chicago", "eta": "2 days", "status": "In progress" },
+    { "number": "NEJ20089934122202", "sender": "Miami", "receiver": "New York", "eta": "1 day", "status": "Pending" },
+    { "number": "NEJ20089934122203", "sender": "Dallas", "receiver": "Seattle", "eta": "3 days", "status": "Completed" },
+    { "number": "NEJ20089934122204", "sender": "Houston", "receiver": "Boston", "eta": "2 days", "status": "Cancelled" },
+    { "number": "NEJ20089934122205", "sender": "Denver", "receiver": "San Francisco", "eta": "4 days", "status": "Loading" },
+    { "number": "NEJ20089934122206", "sender": "Phoenix", "receiver": "Detroit", "eta": "2 day - 3 days", "status": "In progress" },
+    { "number": "NEJ20089934122207", "sender": "San Diego", "receiver": "Orlando", "eta": "3 days", "status": "Pending" },
+    { "number": "NEJ20089934122208", "sender": "Austin", "receiver": "Philadelphia", "eta": "1 day", "status": "Completed" },
+    { "number": "NEJ20089934122209", "sender": "Charlotte", "receiver": "Indianapolis", "eta": "2 days", "status": "Cancelled" },
+    { "number": "NEJ20089934122210", "sender": "Columbus", "receiver": "Nashville", "eta": "2 day - 3 days", "status": "Loading" },
+    { "number": "NEJ20089934122211", "sender": "Memphis", "receiver": "Cleveland", "eta": "2 day - 3 days", "status": "In progress" },
+    { "number": "NEJ20089934122212", "sender": "Baltimore", "receiver": "Tampa", "eta": "1 day", "status": "Pending" },
+    { "number": "NEJ20089934122213", "sender": "Louisville", "receiver": "Cincinnati", "eta": "3 days", "status": "Completed" },
+    { "number": "NEJ20089934122214", "sender": "Milwaukee", "receiver": "Raleigh", "eta": "4 days", "status": "Cancelled" },
+    { "number": "NEJ20089934122215", "sender": "Omaha", "receiver": "Fresno", "eta": "3 days", "status": "Loading" },
+    { "number": "NEJ20089934122216", "sender": "Mesa", "receiver": "Sacramento", "eta": "2 days", "status": "In progress" },
+    { "number": "NEJ20089934122217", "sender": "Atlanta", "receiver": "Tucson", "eta": "3 days", "status": "Pending" },
+    { "number": "NEJ20089934122218", "sender": "Kansas City", "receiver": "Long Beach", "eta": "1 day", "status": "Completed" },
+    { "number": "NEJ20089934122219", "sender": "Colorado Springs", "receiver": "Oakland", "eta": "2 days", "status": "Cancelled" },
+    { "number": "NEJ20089934122220", "sender": "Minneapolis", "receiver": "Tulsa", "eta": "4 days", "status": "Loading" },
+    { "number": "NEJ20089934122221", "sender": "Arlington", "receiver": "Wichita", "eta": "2 days", "status": "In progress" },
+    { "number": "NEJ20089934122222", "sender": "Bakersfield", "receiver": "New Orleans", "eta": "2 day - 3 days", "status": "Pending" },
+    { "number": "NEJ20089934122223", "sender": "Honolulu", "receiver": "Lexington", "eta": "3 days", "status": "Completed" },
+    { "number": "NEJ20089934122224", "sender": "Stockton", "receiver": "Anchorage", "eta": "1 day", "status": "Cancelled" },
+    { "number": "NEJ20089934122225", "sender": "St. Paul", "receiver": "Plano", "eta": "2 day - 3 days", "status": "Loading" },
+    { "number": "NEJ20089934122226", "sender": "Durham", "receiver": "Lincoln", "eta": "3 days", "status": "In progress" },
+    { "number": "NEJ20089934122227", "sender": "Lubbock", "receiver": "Madison", "eta": "2 days", "status": "Pending" },
+    { "number": "NEJ20089934122228", "sender": "Laredo", "receiver": "Chandler", "eta": "2 day - 3 days", "status": "Completed" },
+    { "number": "NEJ20089934122229", "sender": "Irvine", "receiver": "Norfolk", "eta": "1 day", "status": "Cancelled" },
+    { "number": "NEJ20089934122230", "sender": "Garland", "receiver": "Fremont", "eta": "3 days", "status": "Loading" }
   ],
   "vehicles": [
     {

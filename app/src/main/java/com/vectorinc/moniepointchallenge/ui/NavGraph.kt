@@ -16,8 +16,8 @@ import androidx.navigation.compose.rememberNavController
 import com.vectorinc.moniepointchallenge.screens.CalculateScreen
 import com.vectorinc.moniepointchallenge.screens.HomeScreen
 import com.vectorinc.moniepointchallenge.screens.ProfileScreen
+import com.vectorinc.moniepointchallenge.screens.ShipmentHistoryScreen
 import com.vectorinc.moniepointchallenge.screens.ShipmentTrackingScreen
-import com.vectorinc.moniepointchallenge.screens.ShippingScreen
 
 sealed class Screen(
     val route: String,
@@ -40,7 +40,7 @@ fun MoniePointNavHost(
     NavHost(navController = navController, startDestination = Screen.Home.route, modifier = modifier) {
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.Calculate.route) { CalculateScreen(navController) }
-        composable(Screen.Shipping.route) { ShippingScreen() }
+        composable(Screen.Shipping.route) { ShipmentHistoryScreen(navController) }
         composable(Screen.Profile.route) { ProfileScreen() }
         composable(Screen.Tracking.route) { ShipmentTrackingScreen(navController) }
     }
