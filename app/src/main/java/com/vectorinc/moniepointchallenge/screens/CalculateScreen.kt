@@ -1,11 +1,15 @@
 package com.vectorinc.moniepointchallenge.screens
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Arrangement
@@ -118,12 +122,12 @@ fun CalculateScreen(
 
     val buttonOffsetY by animateFloatAsState(
         targetValue = if (animateIn.value) 0f else 100f,
-        animationSpec = tween(500, delayMillis = 800),
+        animationSpec = tween(500, delayMillis = 500),
         label = "ButtonOffsetY"
     )
     val buttonAlpha by animateFloatAsState(
         targetValue = if (animateIn.value) 1f else 0f,
-        animationSpec = tween(500, delayMillis = 800),
+        animationSpec = tween(500, delayMillis = 500),
         label = "ButtonAlpha"
     )
 
@@ -159,6 +163,14 @@ fun CalculateScreen(
         label = "SenderAlpha"
     )
 
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.95f else 1f,
+        animationSpec = tween(durationMillis = 150),
+        label = "scaleAnimation"
+    )
 
     LaunchedEffect(Unit) {
         animateIn.value = true
@@ -446,19 +458,9 @@ fun CalculateScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Button(
+            AnimatedCalculateButton(
                 onClick = { /* Handle calculate */ },
-                colors = ButtonDefaults.buttonColors(containerColor = OrangePrimary),
-                modifier = Modifier
-                    .height(58.dp)
-                    .fillMaxWidth()
-                    .graphicsLayer {
-                        translationY = buttonOffsetY
-                        alpha = buttonAlpha
-                    }
-            ) {
-                Text("Calculate", color = Color.White)
-            }
+            )
         }
     }
 }
@@ -471,55 +473,103 @@ fun CategorySelector(
 ) {
     val (selectedCategory, setSelectedCategory) = remember { mutableStateOf<String?>(null) }
 
+    val offsetX = remember { Animatable(300f) }
+
+    LaunchedEffect(Unit) {
+        offsetX.animateTo(
+            targetValue = 0f,
+            animationSpec = tween(durationMillis = 600, easing = LinearOutSlowInEasing)
+        )
+    }
+
     Column(modifier = modifier) {
-        FlowRow(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+        Box(
+            modifier = Modifier.graphicsLayer {
+                translationX = offsetX.value
+            }
         ) {
-            categories.forEach { category ->
-                val isSelected = category == selectedCategory
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                categories.forEach { category ->
+                    val isSelected = category == selectedCategory
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .height(36.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(
-                            if (isSelected) SelectedPurple else Color.White
-                        )
-                        .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(10.dp)
-                        )
-                        .clickable { setSelectedCategory(category) }
-                        .padding(horizontal = 12.dp)
-                ) {
-                    if (isSelected) {
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Icon(
-                            imageVector = Icons.Default.Check,
-                            contentDescription = "Selected",
-                            tint = Color.White,
-                            modifier = Modifier.size(16.dp)
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .height(36.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(
+                                if (isSelected) SelectedPurple else Color.White
+                            )
+                            .border(
+                                width = 1.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                            .clickable { setSelectedCategory(category) }
+                            .padding(horizontal = 12.dp)
+                    ) {
+                        if (isSelected) {
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Icon(
+                                imageVector = Icons.Default.Check,
+                                contentDescription = "Selected",
+                                tint = Color.White,
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                        }
 
+                        Text(
+                            text = category,
+                            color = if (isSelected) Color.White else Color.Black,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
-
-                    Text(
-                        text = category,
-                        color = if (isSelected) Color.White else Color.Black,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-
+        Spacer(modifier = Modifier.height(15.dp))
     }
 }
+
+@Composable
+fun AnimatedCalculateButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    buttonOffsetY: Float = 0f,
+    buttonAlpha: Float = 1f
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.35f else 1f,
+        animationSpec = tween(durationMillis = 150),
+        label = "scaleAnimation"
+    )
+
+    Button(
+        onClick = onClick,
+        interactionSource = interactionSource,
+        colors = ButtonDefaults.buttonColors(containerColor = OrangePrimary),
+        modifier = modifier
+            .height(58.dp)
+            .fillMaxWidth()
+            .graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+                translationY = buttonOffsetY
+                alpha = buttonAlpha
+            }
+    ) {
+        Text("Calculate", color = Color.White)
+    }
+}
+
 
 

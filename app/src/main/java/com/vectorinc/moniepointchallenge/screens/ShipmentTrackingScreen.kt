@@ -137,31 +137,34 @@ fun ShipmentTrackingScreen(
             }
         }
 
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(0.dp)
+        val filteredShipments = shipments.value
+            .filter {
+                it.title.contains(query, ignoreCase = true) ||
+                        it.trackingCode.contains(query, ignoreCase = true)
+            }
+            .take(20)
+
+        if (filteredShipments.isNotEmpty()) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
             ) {
-                items(
-                    shipments.value
-                        .filter {
-                            it.title.contains(query, ignoreCase = true) ||
-                                    it.trackingCode.contains(query, ignoreCase = true)
-                        }
-                        .take(20)
-                ) { item ->
-                    ShipmentCard(item)
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(0.dp)
+                ) {
+                    items(filteredShipments) { item ->
+                        ShipmentCard(item)
+                    }
                 }
             }
         }
+
     }
 }
 

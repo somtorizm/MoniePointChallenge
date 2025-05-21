@@ -35,6 +35,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -79,7 +80,7 @@ fun ShipmentHistoryScreen(
     val shipmentTitleAlpha = remember { Animatable(0f) }
 
     LaunchedEffect(Unit) {
-        launch { headerContainerOffsetY.animateTo(0f, tween(durationMillis = 700, easing = LinearOutSlowInEasing)) }
+        launch { headerContainerOffsetY.animateTo(0f, tween(durationMillis = 800, easing = LinearOutSlowInEasing)) }
         launch { topBarAlpha.animateTo(1f, tween(700)) }
         launch { backButtonOffsetX.animateTo(0f, tween(700, easing = LinearOutSlowInEasing)) }
         launch { tabsOffsetY.animateTo(0f, tween(700, easing = LinearOutSlowInEasing)) }
@@ -160,34 +161,51 @@ fun ShipmentHistoryScreen(
         ) {
             Spacer(modifier = Modifier.height(20.dp))
 
-            LazyColumn(
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+            Box(
                 modifier = Modifier
+                    .fillMaxSize()
                     .graphicsLayer {
                         translationY = shipmentOffsetY.value
                         alpha = shipmentAlpha.value
                     }
             ) {
-                item {
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "Shipments",
-                        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                        modifier = Modifier
-                            .graphicsLayer {
-                                translationX = shipmentTitleOffsetX.value
-                                alpha = shipmentTitleAlpha.value
-                            }
-                            .padding(horizontal = 20.dp, vertical = 10.dp)
-                    )
+                LazyColumn(
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    item {
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = "Shipments",
+                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                            modifier = Modifier
+                                .graphicsLayer {
+                                    translationX = shipmentTitleOffsetX.value
+                                    alpha = shipmentTitleAlpha.value
+                                }
+                                .padding(horizontal = 20.dp, vertical = 10.dp)
+                        )
+                    }
+
+                    itemsIndexed(filtered) { index, item ->
+                        ShipmentItemCard(item = item, index = index)
+                    }
                 }
 
-                itemsIndexed(filtered) { index, item ->
-                    ShipmentItemCard(item = item, index = index)
-                }
-
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                        .align(Alignment.BottomCenter)
+                        .background(
+                            brush = Brush.verticalGradient(
+                                colors = listOf(Color.Transparent, Color(0xFFF8F7F7))
+                            )
+                        )
+                )
             }
+
         }
     }
 }
