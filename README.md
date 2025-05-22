@@ -13,7 +13,7 @@ MoniePoint Challenge is a production-grade Android application engineered in Kot
 * **Jetpack Compose** with Material 3
 * **Hilt** for dependency injection
 * **Lottie Compose** for animations
-* **Android Gradle Plugin** 8.10
+* **Android Gradle Plugin** 8.9.0
 * **Compile SDK** 35 (minimum SDK 24)
 
 ## Running the project
