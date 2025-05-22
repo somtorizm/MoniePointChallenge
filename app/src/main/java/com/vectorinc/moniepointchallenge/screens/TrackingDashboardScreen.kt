@@ -41,6 +41,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,6 +53,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.vectorinc.moniepointchallenge.R
 import com.vectorinc.moniepointchallenge.data.model.Shipment
 import com.vectorinc.moniepointchallenge.data.model.VehicleOption
@@ -60,34 +63,79 @@ import com.vectorinc.moniepointchallenge.theme.OrangePrimary
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
 import com.vectorinc.moniepointchallenge.ui.LightDivider
 
-
 @Composable
 fun TrackingDashboardScreen(
+    navController: NavController,
     shipment: Shipment,
     vehicles: List<VehicleOption>,
     onSearchClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val trackingVisible = remember { mutableStateOf(false) }
+    val trackingOffsetY by animateFloatAsState(
+        targetValue = if (trackingVisible.value) 0f else 50f,
+        animationSpec = tween(700),
+        label = "TrackingSlideIn"
+    )
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val animateOut = rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(navBackStackEntry) {
+        animateOut.value = false
+    }
+
+    val headerOffsetY by animateFloatAsState(
+        targetValue = if (animateOut.value) -200f else 0f,
+        animationSpec = tween(500),
+        label = "TopHeaderExit"
+    )
+
+    val headerAlpha by animateFloatAsState(
+        targetValue = if (animateOut.value) 0f else 1f,
+        animationSpec = tween(500),
+        label = "TopHeaderFade"
+    )
+
+    LaunchedEffect(Unit) {
+        trackingVisible.value = true
+    }
     Column(
         modifier
             .verticalScroll(rememberScrollState())
+            .background(Color(0xFFF8F7F7))
     ) {
-        TopHeader(onSearchClick)
-        TrackingSection(
-            shipmentNumber = "NEJ20089934122231",
-            sender = "Atlanta, 5243",
-            receiver = "Chicago, 6342",
-            eta = "2 day - 3 days",
-            status = "Waiting to collect",
-            onAddStop = { /* Handle action */ }
+        TopHeader(
+            onSearchClick = {
+                animateOut.value = true
+                onSearchClick()
+            },
+            modifier = Modifier
+                .graphicsLayer {
+                    translationY = headerOffsetY
+                    alpha = headerAlpha
+                }
         )
+        Box(modifier = Modifier.graphicsLayer {
+            translationY = trackingOffsetY
+            alpha = if (trackingVisible.value) 1f else 0f
+        }) {
+            TrackingSection(
+                shipmentNumber = "NEJ20089934122231",
+                sender = "Atlanta, 5243",
+                receiver = "Chicago, 6342",
+                eta = "2 day - 3 days",
+                status = "Waiting to collect",
+                onAddStop = { /* Handle action */ }
+            )
+        }
 
         AvailableVehiclesSection(vehicles)
     }
 }
 
 @Composable
-private fun TopHeader(onSearchClick: () -> Unit) {
+private fun TopHeader(modifier: Modifier, onSearchClick: () -> Unit) {
     val (query, setQuery) = remember { mutableStateOf("") }
     val isVisible = remember { mutableStateOf(false) }
 
@@ -102,7 +150,7 @@ private fun TopHeader(onSearchClick: () -> Unit) {
     }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .graphicsLayer { translationY = offsetY }
             .background(TopSectionPurple)
@@ -214,6 +262,15 @@ fun RoundedSearchBar(
     ) {
         Spacer(modifier = Modifier.width(8.dp))
 
+        Icon(
+            imageVector = Icons.Default.Search,
+            contentDescription = "Search Icon",
+            tint = TopSectionPurple,
+            modifier = Modifier.size(20.dp)
+        )
+
+        Spacer(modifier = Modifier.width(8.dp))
+
         BasicTextField(
             value = query,
             onValueChange = onQueryChange,
@@ -265,7 +322,7 @@ fun TrackingSection(
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(10.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 0.2.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
@@ -379,15 +436,29 @@ private fun AvailableVehiclesSection(options: List<VehicleOption>) {
 @Composable
 fun VehicleCard(vehicle: VehicleOption) {
     val slideIn = remember { mutableStateOf(false) }
-    val offsetY by animateFloatAsState(
-        targetValue = if (slideIn.value) 0f else -100f,
-        animationSpec = tween(durationMillis = 500),
-        label = "ImageSlideAnimation"
-    )
-    val offsetX by animateFloatAsState(
+
+    val imageOffsetX by animateFloatAsState(
         targetValue = if (slideIn.value) 0f else -30f,
         animationSpec = tween(durationMillis = 500),
-        label = "ImageSlideAnimation"
+        label = "ImageSlide"
+    )
+
+    val imageOffsetY by animateFloatAsState(
+        targetValue = if (slideIn.value) 0f else -100f,
+        animationSpec = tween(durationMillis = 500),
+        label = "ImageSlide"
+    )
+
+    val textOffsetY by animateFloatAsState(
+        targetValue = if (slideIn.value) 0f else 20f,
+        animationSpec = tween(durationMillis = 500, delayMillis = 300),
+        label = "TextSlide"
+    )
+
+    val textAlpha by animateFloatAsState(
+        targetValue = if (slideIn.value) 1f else 0f,
+        animationSpec = tween(durationMillis = 500, delayMillis = 300),
+        label = "TextFade"
     )
 
     LaunchedEffect(Unit) {
@@ -398,11 +469,11 @@ fun VehicleCard(vehicle: VehicleOption) {
         modifier = Modifier
             .width(250.dp)
             .height(210.dp),
-        elevation = CardDefaults.cardElevation(1.dp),
+        elevation = CardDefaults.cardElevation(0.2.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Box() {
+        Box {
             Image(
                 painter = painterResource(id = vehicle.iconRes),
                 contentDescription = vehicle.description,
@@ -411,35 +482,34 @@ fun VehicleCard(vehicle: VehicleOption) {
                     .fillMaxSize()
                     .padding(25.dp)
                     .graphicsLayer {
-                        translationX = -offsetY
-                        translationY = offsetX
-
+                        translationX = -imageOffsetY
+                        translationY = imageOffsetX
                     }
             )
 
-
             Column(
-                modifier = Modifier.padding(12.dp),
-                verticalArrangement = Arrangement.SpaceBetween
+                modifier = Modifier
+                    .padding(12.dp)
+                    .graphicsLayer {
+                        translationY = textOffsetY
+                        alpha = textAlpha
+                    },
+                verticalArrangement = Arrangement.Bottom
             ) {
-                Column {
-                    Text(
-                        text = vehicle.name,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Text(
-                        text = vehicle.description,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Gray
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = vehicle.name,
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Text(
+                    text = vehicle.description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Gray
+                )
             }
         }
-
     }
 }
+
 
 @Composable
 fun LabelWithValue(
@@ -506,8 +576,6 @@ val sampleVehicles = listOf(
 @Preview(showBackground = true)
 @Composable
 private fun TrackingDashboardPreview() {
-    MoniePointChallengeTheme  {
-        TrackingDashboardScreen(sampleShipment, sampleVehicles, onSearchClick = {})
-    }
+
 }
 

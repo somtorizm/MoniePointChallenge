@@ -1,9 +1,12 @@
 package com.vectorinc.moniepointchallenge.screens
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import com.vectorinc.moniepointchallenge.viewmodel.ShipmentTrackingViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -31,13 +34,16 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -59,65 +65,136 @@ fun ShipmentTrackingScreen(
     val (query, setQuery) = remember { mutableStateOf("") }
     val shipments = viewModel.shipment.collectAsState()
 
+    val isBarVisible = remember { mutableStateOf(false) }
+    val isBackVisible = remember { mutableStateOf(false) }
+
+    val barOffsetY by animateFloatAsState(
+        targetValue = if (isBarVisible.value) 0f else 80f,
+        animationSpec = tween(durationMillis = 800),
+        label = "BarSlideUp"
+    )
+    val barAlpha by animateFloatAsState(
+        targetValue = if (isBarVisible.value) 1f else 0f,
+        animationSpec = tween(durationMillis = 800),
+        label = "BarFadeIn"
+    )
+
+    val backOffsetX by animateFloatAsState(
+        targetValue = if (isBackVisible.value) 0f else -60f,
+        animationSpec = tween(durationMillis = 800),
+        label = "BackSlideRight"
+    )
+    val backAlpha by animateFloatAsState(
+        targetValue = if (isBackVisible.value) 1f else 0f,
+        animationSpec = tween(durationMillis = 800),
+        label = "BackFadeIn"
+    )
+
+    LaunchedEffect(Unit) {
+        isBarVisible.value = true
+        isBackVisible.value = true
+    }
+
     Column(modifier = Modifier.fillMaxWidth()) {
-        Row(
+
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(TopSectionPurple)
-                .padding(horizontal = 12.dp, vertical = 15.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            IconButton(onClick = {
-                navController.popBackStack()
-            }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.outline_arrow_back_ios_24),
-                    contentDescription = "Back",
-                    tint = Color.White
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .graphicsLayer {
+                        translationY = barOffsetY
+                        this.alpha = barAlpha
+                    }
+                    .background(TopSectionPurple)
+                    .padding(horizontal = 12.dp, vertical = 15.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                IconButton(onClick = {
+                    navController.popBackStack()
+
+                },
+                    modifier =  Modifier.graphicsLayer {
+                        translationX = backOffsetX
+                        alpha = backAlpha
+                    }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.outline_arrow_back_ios_24),
+                        contentDescription = "Back",
+                        tint = Color.White
+                    )
+                }
+
+                RoundedSearchBar(
+                    query = query,
+                    onQueryChange = setQuery,
+                    onPrintClick = { /* Print handler */ }
                 )
             }
-
-            RoundedSearchBar(
-                query = query,
-                onQueryChange = setQuery,
-                onPrintClick = { /* Print handler */ }
-            )
         }
 
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(0.dp)
+        val filteredShipments = shipments.value
+            .filter {
+                it.title.contains(query, ignoreCase = true) ||
+                        it.trackingCode.contains(query, ignoreCase = true)
+            }
+            .take(20)
+
+        if (filteredShipments.isNotEmpty()) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
             ) {
-                items(
-                    shipments.value
-                        .filter {
-                            it.title.contains(query, ignoreCase = true) ||
-                                    it.trackingCode.contains(query, ignoreCase = true)
-                        }
-                        .take(20)
-                ) { item ->
-                    ShipmentCard(item)
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(0.dp)
+                ) {
+                    items(filteredShipments) { item ->
+                        ShipmentCard(item)
+                    }
                 }
             }
         }
+
     }
 }
 
 
 @Composable
 private fun ShipmentCard(item: ShipmentListItem) {
+    val isVisible = remember { mutableStateOf(false) }
+
+    val offsetY by animateFloatAsState(
+        targetValue = if (isVisible.value) 0f else 50f,
+        animationSpec = tween(durationMillis = 600),
+        label = "SlideInY"
+    )
+
+    val alpha by animateFloatAsState(
+        targetValue = if (isVisible.value) 1f else 0f,
+        animationSpec = tween(durationMillis = 600),
+        label = "FadeIn"
+    )
+
+    LaunchedEffect(Unit) {
+        isVisible.value = true
+    }
+
     Column (
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
+            .graphicsLayer {
+                translationY = offsetY
+                this.alpha = alpha
+            },
     ) {
         Row(
             modifier = Modifier
