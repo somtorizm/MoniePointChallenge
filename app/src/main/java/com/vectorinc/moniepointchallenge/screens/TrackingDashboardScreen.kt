@@ -564,6 +564,7 @@ val sampleShipment = Shipment(
     sender = "Jakarta, Indonesia",
     receiver = "Bandung, Indonesia",
     eta = "2 day - 3 days",
+    item = "MacBook Pro",
     status = "Waiting to collect"
 )
 

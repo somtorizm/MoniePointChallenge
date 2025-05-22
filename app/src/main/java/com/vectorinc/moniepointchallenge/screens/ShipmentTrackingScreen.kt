@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Inventory
 import androidx.compose.material.icons.filled.Print
 import androidx.compose.material3.Card
@@ -224,8 +226,12 @@ private fun ShipmentCard(item: ShipmentListItem, onClick: () -> Unit) {
             Spacer(modifier = Modifier.size(12.dp))
             Column {
                 Text(item.title, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
-                Text(item.trackingCode, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.outline)
-                Text(item.route, style = MaterialTheme.typography.bodySmall)
+
+                FlowRow (horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text(item.trackingCode, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.outline)
+                    Icon(imageVector = Icons.Filled.Circle, contentDescription = null, tint = MaterialTheme.colorScheme.outline, modifier = Modifier.size(5.dp).align(Alignment.CenterVertically))
+                    Text(item.route,style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.outline)
+                }
             }
         }
 

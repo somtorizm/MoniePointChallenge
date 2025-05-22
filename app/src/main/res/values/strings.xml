@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MoniePoint Challenge</string>
+    <string name="google_maps_key">AIzaSyBbzlaVYNoXATDVjDI1tQ3HZ6vmjUPbKz4</string>
 </resources>

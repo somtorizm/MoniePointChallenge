@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
 
                 val navBackStackEntry = navController.currentBackStackEntryAsState().value
                 val currentRoute = navBackStackEntry?.destination?.route
-                val bottomBarRoutes = listOf("home", "profile")
+                val bottomBarRoutes = listOf("home")
 
                 LaunchedEffect(currentRoute) {
                     showBottomBar.value = currentRoute in bottomBarRoutes

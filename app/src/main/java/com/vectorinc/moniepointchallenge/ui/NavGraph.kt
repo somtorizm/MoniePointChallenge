@@ -20,12 +20,14 @@ import com.vectorinc.moniepointchallenge.screens.ResultScreen
 import com.vectorinc.moniepointchallenge.screens.ShipmentHistoryScreen
 import com.vectorinc.moniepointchallenge.screens.ShipmentMapScreen
 import com.vectorinc.moniepointchallenge.screens.ShipmentTrackingScreen
+import com.vectorinc.moniepointchallenge.screens.SplashScreen
 
 sealed class Screen(
     val route: String,
     val label: String,
     val icon: ImageVector
 ) {
+    object Splash : Screen("splash", "Splash", Icons.Default.Home)
     object Home : Screen("home", "Home", Icons.Default.Home)
     object Calculate : Screen("calculate", "Calculate", Icons.Default.Calculate)
     object Tracking: Screen("tracking", "Tracking", Icons.Default.LocalShipping)
@@ -41,11 +43,12 @@ fun MoniePointNavHost(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
-    NavHost(navController = navController, startDestination = Screen.Home.route, modifier = modifier) {
+    NavHost(navController = navController, startDestination = Screen.Splash.route, modifier = modifier) {
+        composable(Screen.Splash.route) { SplashScreen(navController) }
         composable(Screen.Home.route) { HomeScreen(navController) }
         composable(Screen.Calculate.route) { CalculateScreen(navController) }
         composable(Screen.Shipping.route) { ShipmentHistoryScreen(navController) }
-        composable(Screen.Profile.route) { ProfileScreen() }
+        composable(Screen.Profile.route) { ProfileScreen(navController) }
         composable(Screen.Tracking.route) { ShipmentTrackingScreen(navController) }
         composable(Screen.ShippingCalculateResult.route) { ResultScreen(navController)  }
         composable(Screen.TrackingMap.route) { ShipmentMapScreen(navController) }

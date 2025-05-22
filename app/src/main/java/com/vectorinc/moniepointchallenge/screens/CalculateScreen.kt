@@ -68,6 +68,7 @@ import com.vectorinc.moniepointchallenge.R
 import com.vectorinc.moniepointchallenge.theme.OrangePrimary
 import com.vectorinc.moniepointchallenge.theme.SelectedPurple
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
+import com.vectorinc.moniepointchallenge.ui.DefaultAppBar
 import com.vectorinc.moniepointchallenge.ui.Screen
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -86,24 +87,6 @@ fun CalculateScreen(
     val packagingOptions = listOf("Box", "Envelope", "Pallet")
     var selectedPackaging by remember { mutableStateOf(packagingOptions.first()) }
 
-
-    val appBarHeight by animateFloatAsState(
-        targetValue = if (animateIn.value) 58f else 108f,
-        animationSpec = tween(durationMillis = 700),
-        label = "AppBarHeight"
-    )
-
-    val appBarOffsetY by animateFloatAsState(
-        targetValue = if (animateIn.value) 0f else 20f,
-        animationSpec = tween(durationMillis = 500),
-        label = "AppBarOffset"
-    )
-
-    val appBarAlpha by animateFloatAsState(
-        targetValue = if (animateIn.value) 1f else 0.7f,
-        animationSpec = tween(durationMillis = 500),
-        label = "AppBarAlpha"
-    )
 
     LaunchedEffect(Unit) {
         animateIn.value = true
@@ -170,51 +153,9 @@ fun CalculateScreen(
             .fillMaxSize()
             .background(Color(0xFFF8F7F7))
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(TopSectionPurple)
-        ) {
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .graphicsLayer {
-                        translationY = appBarOffsetY
-                        alpha = appBarAlpha
-                    }
-            ) {
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .background(TopSectionPurple)
-                )
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(appBarHeight.dp)
-                        .padding(horizontal = 8.dp)
-                ) {
-                    IconButton(
-                        onClick = { navController.popBackStack() },
-                        modifier = Modifier.align(Alignment.CenterStart)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.outline_arrow_back_ios_24),
-                            contentDescription = "Back",
-                        )
-                    }
-
-                    Text(
-                        text = "Calculate",
-                        color = Color.White,
-                        style = MaterialTheme.typography.titleLarge,
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
-            }
-        }
+        DefaultAppBar( onBackClick = {
+            navController.popBackStack()
+        }, "Calculate")
 
         Column(
             modifier = Modifier
