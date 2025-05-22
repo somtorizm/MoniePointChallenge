@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.google.maps.compose)
+    implementation(libs.play.services.maps)
 
     kapt(libs.hilt.compiler)
 

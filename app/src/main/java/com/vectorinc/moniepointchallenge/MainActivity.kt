@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.maps.MapsInitializer
 import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
 import com.vectorinc.moniepointchallenge.ui.BottomNavigationBar
@@ -33,6 +34,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MapsInitializer.initialize(this)
+
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(
                 TopSectionPurple.toArgb(),

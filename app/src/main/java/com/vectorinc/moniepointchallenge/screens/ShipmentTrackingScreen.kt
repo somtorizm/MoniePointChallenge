@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import com.vectorinc.moniepointchallenge.viewmodel.ShipmentTrackingViewModel
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,6 +56,7 @@ import com.vectorinc.moniepointchallenge.R
 import com.vectorinc.moniepointchallenge.data.model.ShipmentListItem
 import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
+import com.vectorinc.moniepointchallenge.ui.Screen
 
 @Composable
 fun ShipmentTrackingScreen(
@@ -159,7 +161,11 @@ fun ShipmentTrackingScreen(
                     verticalArrangement = Arrangement.spacedBy(0.dp)
                 ) {
                     items(filteredShipments) { item ->
-                        ShipmentCard(item)
+                        ShipmentCard(item) {
+                            navController.navigate(Screen.TrackingMap.route) {
+                                launchSingleTop = true
+                            }
+                        }
                     }
                 }
             }
@@ -170,7 +176,7 @@ fun ShipmentTrackingScreen(
 
 
 @Composable
-private fun ShipmentCard(item: ShipmentListItem) {
+private fun ShipmentCard(item: ShipmentListItem, onClick: () -> Unit) {
     val isVisible = remember { mutableStateOf(false) }
 
     val offsetY by animateFloatAsState(
@@ -191,6 +197,9 @@ private fun ShipmentCard(item: ShipmentListItem) {
 
     Column (
         modifier = Modifier.fillMaxWidth()
+            .clickable {
+                onClick()
+            }
             .graphicsLayer {
                 translationY = offsetY
                 this.alpha = alpha
