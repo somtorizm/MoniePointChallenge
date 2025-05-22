@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -60,6 +61,7 @@ import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
 import com.vectorinc.moniepointchallenge.ui.Screen
 
+@OptIn
 @Composable
 fun ShipmentTrackingScreen(
     navController: NavController,
@@ -177,6 +179,7 @@ fun ShipmentTrackingScreen(
 }
 
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ShipmentCard(item: ShipmentListItem, onClick: () -> Unit) {
     val isVisible = remember { mutableStateOf(false) }
@@ -198,7 +201,8 @@ private fun ShipmentCard(item: ShipmentListItem, onClick: () -> Unit) {
     }
 
     Column (
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clickable {
                 onClick()
             }
@@ -229,7 +233,9 @@ private fun ShipmentCard(item: ShipmentListItem, onClick: () -> Unit) {
 
                 FlowRow (horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(item.trackingCode, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.outline)
-                    Icon(imageVector = Icons.Filled.Circle, contentDescription = null, tint = MaterialTheme.colorScheme.outline, modifier = Modifier.size(5.dp).align(Alignment.CenterVertically))
+                    Icon(imageVector = Icons.Filled.Circle, contentDescription = null, tint = MaterialTheme.colorScheme.outline, modifier = Modifier
+                        .size(5.dp)
+                        .align(Alignment.CenterVertically))
                     Text(item.route,style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.outline)
                 }
             }
