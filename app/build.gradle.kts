@@ -13,6 +13,8 @@ android {
     compileSdk = 35
 
     defaultConfig {
+        resValue ("string", "google_maps_key", "\"${project.findProperty("MAPS_API_KEY") ?: ""}\"")
+
         applicationId = "com.vectorinc.moniepointchallenge"
         minSdk = 24
         targetSdk = 35
@@ -40,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
