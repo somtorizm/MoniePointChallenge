@@ -44,7 +44,9 @@ import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -112,7 +114,8 @@ fun ShipmentHistoryScreen(
                         .fillMaxWidth()
                         .height(58.dp)
                         .padding(horizontal = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     IconButton(
                         onClick = { navController.popBackStack() },
@@ -125,14 +128,15 @@ fun ShipmentHistoryScreen(
                             contentDescription = "Back"
                         )
                     }
-                    Spacer(modifier = Modifier.weight(1f))
                     Text(
                         text = "Shipment History",
                         color = Color.White,
                         style = MaterialTheme.typography.titleLarge,
+                        textAlign = TextAlign.Center,
                         modifier = Modifier.align(Alignment.CenterVertically)
                     )
-                    Spacer(modifier = Modifier.weight(1f))
+
+                    Spacer(modifier = Modifier.width(30.dp))
                 }
 
                 Box(
@@ -246,13 +250,13 @@ fun ShipmentItemCard(item: ShipmentCardItem, index: Int) {
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(item.title, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleLarge)
                 Spacer(modifier = Modifier.height(10.dp))
-                Text(item.subtitle, style = MaterialTheme.typography.bodySmall, color = Color.Gray, fontSize = 15.sp)
+                Text(item.subtitle, style = MaterialTheme.typography.labelSmall, color = Color.DarkGray, fontSize = 16.sp, lineHeight = 17.sp)
                 Spacer(modifier = Modifier.height(10.dp))
 
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(13.dp)) {
                     Text(item.price, color = TopSectionPurple, fontWeight = FontWeight.Bold)
                     Icon(imageVector = Icons.Filled.Circle, contentDescription = null, tint = Color.Gray, modifier = Modifier.size(8.dp))
-                    Text(item.date, style = MaterialTheme.typography.bodyMedium, color = Color.Black)
+                    Text(item.date, style = MaterialTheme.typography.labelSmall, color = Color.Black)
                 }
             }
 
@@ -382,37 +386,34 @@ fun StatusLabel(status: ShipmentStatus) {
             backgroundColor = Color(0xFFEAFBF3),
             textColor = Color(0xFF12B76A),
             icon = Icons.Default.Cached,
-            label = "in-progress"
+            label = "In-progress"
         )
         ShipmentStatus.PENDING -> ShipmentStatusStyle(
             backgroundColor = Color(0xFFFFF4D1),
             textColor = Color(0xFFF79009),
             icon = Icons.Default.Schedule,
-            label = "pending"
+            label = "Pending"
         )
 
         ShipmentStatus.COMPLETED -> ShipmentStatusStyle(
             backgroundColor = Color(0xFFEAFBF3),
             textColor = Color(0xFF12B76A),
             icon = Icons.Default.CheckCircle,
-            label = "completed"
+            label = "Completed"
         )
         ShipmentStatus.CANCELLED -> ShipmentStatusStyle(
             backgroundColor = Color(0xFFFFE4E1),
             textColor = Color(0xFFF04438),
             icon = Icons.Default.Cancel,
-            label = "cancelled"
+            label = "Cancelled"
         )
         else -> ShipmentStatusStyle(
             backgroundColor = Color(0xFFF2F4F7),
             textColor = Color(0xFF344054),
             icon = Icons.Default.HourglassEmpty,
-            label = "loading"
+            label = "Loading"
         )
     }
-
-
-
 
     Box(
         modifier = Modifier
@@ -424,19 +425,20 @@ fun StatusLabel(status: ShipmentStatus) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .clip(RoundedCornerShape(50))
-                .background(statusStyle.backgroundColor)
-                .padding(horizontal = 8.dp, vertical = 4.dp)
+                .padding(horizontal = 2.dp, vertical = 4.dp)
         ) {
             Icon(
                 imageVector = statusStyle.icon,
                 contentDescription = null,
                 tint = statusStyle.textColor,
-                modifier = Modifier.size(14.dp)
+                modifier = Modifier.size(20.dp)
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = statusStyle.label,
                 color = statusStyle.textColor,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
                 style = MaterialTheme.typography.labelSmall
             )
         }

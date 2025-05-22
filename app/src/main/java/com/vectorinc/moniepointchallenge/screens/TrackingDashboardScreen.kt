@@ -260,6 +260,8 @@ fun RoundedSearchBar(
             .padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        Spacer(modifier = Modifier.width(8.dp))
+
         Icon(
             imageVector = Icons.Default.Search,
             contentDescription = "Search Icon",
