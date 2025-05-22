@@ -29,11 +29,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDownward
-import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.HorizontalRule
 import androidx.compose.material.icons.filled.Inventory2
@@ -44,7 +39,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -52,9 +46,6 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarDefaults
@@ -70,15 +61,14 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.vectorinc.moniepointchallenge.R
-import com.vectorinc.moniepointchallenge.theme.DeepPurple
 import com.vectorinc.moniepointchallenge.theme.OrangePrimary
 import com.vectorinc.moniepointchallenge.theme.SelectedPurple
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
+import com.vectorinc.moniepointchallenge.ui.DefaultAppBar
 import com.vectorinc.moniepointchallenge.ui.Screen
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -97,24 +87,6 @@ fun CalculateScreen(
     val packagingOptions = listOf("Box", "Envelope", "Pallet")
     var selectedPackaging by remember { mutableStateOf(packagingOptions.first()) }
 
-
-    val appBarHeight by animateFloatAsState(
-        targetValue = if (animateIn.value) 58f else 108f,
-        animationSpec = tween(durationMillis = 700),
-        label = "AppBarHeight"
-    )
-
-    val appBarOffsetY by animateFloatAsState(
-        targetValue = if (animateIn.value) 0f else 20f,
-        animationSpec = tween(durationMillis = 500),
-        label = "AppBarOffset"
-    )
-
-    val appBarAlpha by animateFloatAsState(
-        targetValue = if (animateIn.value) 1f else 0.7f,
-        animationSpec = tween(durationMillis = 500),
-        label = "AppBarAlpha"
-    )
 
     LaunchedEffect(Unit) {
         animateIn.value = true
@@ -181,51 +153,9 @@ fun CalculateScreen(
             .fillMaxSize()
             .background(Color(0xFFF8F7F7))
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(TopSectionPurple)
-        ) {
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .graphicsLayer {
-                        translationY = appBarOffsetY
-                        alpha = appBarAlpha
-                    }
-            ) {
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .background(TopSectionPurple)
-                )
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(appBarHeight.dp)
-                        .padding(horizontal = 8.dp)
-                ) {
-                    IconButton(
-                        onClick = { navController.popBackStack() },
-                        modifier = Modifier.align(Alignment.CenterStart)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.outline_arrow_back_ios_24),
-                            contentDescription = "Back",
-                        )
-                    }
-
-                    Text(
-                        text = "Calculate",
-                        color = Color.White,
-                        style = MaterialTheme.typography.titleLarge,
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
-            }
-        }
+        DefaultAppBar( onBackClick = {
+            navController.popBackStack()
+        }, "Calculate")
 
         Column(
             modifier = Modifier

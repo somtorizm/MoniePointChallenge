@@ -34,7 +34,7 @@ class ShippingRepositoryImpl @Inject constructor(
         return if (info.shipments.isNotEmpty()) {
             info.shipments.map { shipment ->
                 ShipmentListItem(
-                    title = "Shipment from ${shipment.sender}",
+                    title = shipment.item,
                     trackingCode = "#${shipment.number}",
                     route = "${shipment.sender} \u2192 ${shipment.receiver}"
                 )
@@ -42,7 +42,7 @@ class ShippingRepositoryImpl @Inject constructor(
         } else {
             listOf(
                 ShipmentListItem(
-                    title = "Shipment from ${info.shipment.sender}",
+                    title = info.shipment.item,
                     trackingCode = "#${info.shipment.number}",
                     route = "${info.shipment.sender} \u2192 ${info.shipment.receiver}"
                 )

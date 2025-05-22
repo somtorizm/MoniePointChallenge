@@ -3,40 +3,251 @@
     "number": "NEJ20089934122201",
     "sender": "Jakarta, Indonesia",
     "receiver": "Bandung, Indonesia",
+    "item": "MacBook Pro",
     "eta": "2 day - 3 days",
     "status": "Waiting to collect"
   },
   "shipments": [
-    { "number": "NEJ20089934122201", "sender": "Atlanta", "receiver": "Chicago", "eta": "2 days", "status": "In progress" },
-    { "number": "NEJ20089934122202", "sender": "Miami", "receiver": "New York", "eta": "1 day", "status": "Pending" },
-    { "number": "NEJ20089934122203", "sender": "Dallas", "receiver": "Seattle", "eta": "3 days", "status": "Completed" },
-    { "number": "NEJ20089934122204", "sender": "Houston", "receiver": "Boston", "eta": "2 days", "status": "Cancelled" },
-    { "number": "NEJ20089934122205", "sender": "Denver", "receiver": "San Francisco", "eta": "4 days", "status": "Loading" },
-    { "number": "NEJ20089934122206", "sender": "Phoenix", "receiver": "Detroit", "eta": "2 day - 3 days", "status": "In progress" },
-    { "number": "NEJ20089934122207", "sender": "San Diego", "receiver": "Orlando", "eta": "3 days", "status": "Pending" },
-    { "number": "NEJ20089934122208", "sender": "Austin", "receiver": "Philadelphia", "eta": "1 day", "status": "Completed" },
-    { "number": "NEJ20089934122209", "sender": "Charlotte", "receiver": "Indianapolis", "eta": "2 days", "status": "Cancelled" },
-    { "number": "NEJ20089934122210", "sender": "Columbus", "receiver": "Nashville", "eta": "2 day - 3 days", "status": "Loading" },
-    { "number": "NEJ20089934122211", "sender": "Memphis", "receiver": "Cleveland", "eta": "2 day - 3 days", "status": "In progress" },
-    { "number": "NEJ20089934122212", "sender": "Baltimore", "receiver": "Tampa", "eta": "1 day", "status": "Pending" },
-    { "number": "NEJ20089934122213", "sender": "Louisville", "receiver": "Cincinnati", "eta": "3 days", "status": "Completed" },
-    { "number": "NEJ20089934122214", "sender": "Milwaukee", "receiver": "Raleigh", "eta": "4 days", "status": "Cancelled" },
-    { "number": "NEJ20089934122215", "sender": "Omaha", "receiver": "Fresno", "eta": "3 days", "status": "Loading" },
-    { "number": "NEJ20089934122216", "sender": "Mesa", "receiver": "Sacramento", "eta": "2 days", "status": "In progress" },
-    { "number": "NEJ20089934122217", "sender": "Atlanta", "receiver": "Tucson", "eta": "3 days", "status": "Pending" },
-    { "number": "NEJ20089934122218", "sender": "Kansas City", "receiver": "Long Beach", "eta": "1 day", "status": "Completed" },
-    { "number": "NEJ20089934122219", "sender": "Colorado Springs", "receiver": "Oakland", "eta": "2 days", "status": "Cancelled" },
-    { "number": "NEJ20089934122220", "sender": "Minneapolis", "receiver": "Tulsa", "eta": "4 days", "status": "Loading" },
-    { "number": "NEJ20089934122221", "sender": "Arlington", "receiver": "Wichita", "eta": "2 days", "status": "In progress" },
-    { "number": "NEJ20089934122222", "sender": "Bakersfield", "receiver": "New Orleans", "eta": "2 day - 3 days", "status": "Pending" },
-    { "number": "NEJ20089934122223", "sender": "Honolulu", "receiver": "Lexington", "eta": "3 days", "status": "Completed" },
-    { "number": "NEJ20089934122224", "sender": "Stockton", "receiver": "Anchorage", "eta": "1 day", "status": "Cancelled" },
-    { "number": "NEJ20089934122225", "sender": "St. Paul", "receiver": "Plano", "eta": "2 day - 3 days", "status": "Loading" },
-    { "number": "NEJ20089934122226", "sender": "Durham", "receiver": "Lincoln", "eta": "3 days", "status": "In progress" },
-    { "number": "NEJ20089934122227", "sender": "Lubbock", "receiver": "Madison", "eta": "2 days", "status": "Pending" },
-    { "number": "NEJ20089934122228", "sender": "Laredo", "receiver": "Chandler", "eta": "2 day - 3 days", "status": "Completed" },
-    { "number": "NEJ20089934122229", "sender": "Irvine", "receiver": "Norfolk", "eta": "1 day", "status": "Cancelled" },
-    { "number": "NEJ20089934122230", "sender": "Garland", "receiver": "Fremont", "eta": "3 days", "status": "Loading" }
+    {
+      "number": "NEJ20089934122201",
+      "sender": "Atlanta",
+      "receiver": "Chicago",
+      "item": "Wireless Mouse",
+      "eta": "2 days",
+      "status": "In progress"
+    },
+    {
+      "number": "NEJ20089934122202",
+      "sender": "Miami",
+      "receiver": "New York",
+      "item": "Bluetooth Speaker",
+      "eta": "1 day",
+      "status": "Pending"
+    },
+    {
+      "number": "NEJ20089934122203",
+      "sender": "Dallas",
+      "receiver": "Seattle",
+      "item": "Gaming Keyboard",
+      "eta": "3 days",
+      "status": "Completed"
+    },
+    {
+      "number": "NEJ20089934122204",
+      "sender": "Houston",
+      "receiver": "Boston",
+      "item": "USB-C Cable",
+      "eta": "2 days",
+      "status": "Cancelled"
+    },
+    {
+      "number": "NEJ20089934122205",
+      "sender": "Denver",
+      "receiver": "San Francisco",
+      "item": "Noise-Cancelling Headphones",
+      "eta": "4 days",
+      "status": "Loading"
+    },
+    {
+      "number": "NEJ20089934122206",
+      "sender": "Phoenix",
+      "receiver": "Detroit",
+      "item": "Smartphone",
+      "eta": "2 day - 3 days",
+      "status": "In progress"
+    },
+    {
+      "number": "NEJ20089934122207",
+      "sender": "San Diego",
+      "receiver": "Orlando",
+      "item": "Tablet",
+      "eta": "3 days",
+      "status": "Pending"
+    },
+    {
+      "number": "NEJ20089934122208",
+      "sender": "Austin",
+      "receiver": "Philadelphia",
+      "item": "External Hard Drive",
+      "eta": "1 day",
+      "status": "Completed"
+    },
+    {
+      "number": "NEJ20089934122209",
+      "sender": "Charlotte",
+      "receiver": "Indianapolis",
+      "item": "Smart Watch",
+      "eta": "2 days",
+      "status": "Cancelled"
+    },
+    {
+      "number": "NEJ20089934122210",
+      "sender": "Columbus",
+      "receiver": "Nashville",
+      "item": "Action Camera",
+      "eta": "2 day - 3 days",
+      "status": "Loading"
+    },
+    {
+      "number": "NEJ20089934122211",
+      "sender": "Memphis",
+      "receiver": "Cleveland",
+      "item": "Portable Charger",
+      "eta": "2 day - 3 days",
+      "status": "In progress"
+    },
+    {
+      "number": "NEJ20089934122212",
+      "sender": "Baltimore",
+      "receiver": "Tampa",
+      "item": "Wireless Earbuds",
+      "eta": "1 day",
+      "status": "Pending"
+    },
+    {
+      "number": "NEJ20089934122213",
+      "sender": "Louisville",
+      "receiver": "Cincinnati",
+      "item": "Bluetooth Headset",
+      "eta": "3 days",
+      "status": "Completed"
+    },
+    {
+      "number": "NEJ20089934122214",
+      "sender": "Milwaukee",
+      "receiver": "Raleigh",
+      "item": "Laptop Stand",
+      "eta": "4 days",
+      "status": "Cancelled"
+    },
+    {
+      "number": "NEJ20089934122215",
+      "sender": "Omaha",
+      "receiver": "Fresno",
+      "item": "Webcam",
+      "eta": "3 days",
+      "status": "Loading"
+    },
+    {
+      "number": "NEJ20089934122216",
+      "sender": "Mesa",
+      "receiver": "Sacramento",
+      "item": "Gaming Mousepad",
+      "eta": "2 days",
+      "status": "In progress"
+    },
+    {
+      "number": "NEJ20089934122217",
+      "sender": "Atlanta",
+      "receiver": "Tucson",
+      "item": "USB Hub",
+      "eta": "3 days",
+      "status": "Pending"
+    },
+    {
+      "number": "NEJ20089934122218",
+      "sender": "Kansas City",
+      "receiver": "Long Beach",
+      "item": "Portable SSD",
+      "eta": "1 day",
+      "status": "Completed"
+    },
+    {
+      "number": "NEJ20089934122219",
+      "sender": "Colorado Springs",
+      "receiver": "Oakland",
+      "item": "Wireless Keyboard",
+      "eta": "2 days",
+      "status": "Cancelled"
+    },
+    {
+      "number": "NEJ20089934122220",
+      "sender": "Minneapolis",
+      "receiver": "Tulsa",
+      "item": "USB Flash Drive",
+      "eta": "4 days",
+      "status": "Loading"
+    },
+    {
+      "number": "NEJ20089934122221",
+      "sender": "Arlington",
+      "receiver": "Wichita",
+      "item": "Laptop Sleeve",
+      "eta": "2 days",
+      "status": "In progress"
+    },
+    {
+      "number": "NEJ20089934122222",
+      "sender": "Bakersfield",
+      "receiver": "New Orleans",
+      "item": "Wireless Charger",
+      "eta": "2 day - 3 days",
+      "status": "Pending"
+    },
+    {
+      "number": "NEJ20089934122223",
+      "sender": "Honolulu",
+      "receiver": "Lexington",
+      "item": "Noise-Cancelling Earphones",
+      "eta": "3 days",
+      "status": "Completed"
+    },
+    {
+      "number": "NEJ20089934122224",
+      "sender": "Stockton",
+      "receiver": "Anchorage",
+      "item": "Gaming Controller",
+      "eta": "1 day",
+      "status": "Cancelled"
+    },
+    {
+      "number": "NEJ20089934122225",
+      "sender": "St. Paul",
+      "receiver": "Plano",
+      "item": "Smart Home Hub",
+      "eta": "2 day - 3 days",
+      "status": "Loading"
+    },
+    {
+      "number": "NEJ20089934122226",
+      "sender": "Durham",
+      "receiver": "Lincoln",
+      "item": "VR Headset",
+      "eta": "3 days",
+      "status": "In progress"
+    },
+    {
+      "number": "NEJ20089934122227",
+      "sender": "Lubbock",
+      "receiver": "Madison",
+      "item": "Portable Projector",
+      "eta": "2 days",
+      "status": "Pending"
+    },
+    {
+      "number": "NEJ20089934122228",
+      "sender": "Laredo",
+      "receiver": "Chandler",
+      "item": "Action Camera",
+      "eta": "2 day - 3 days",
+      "status": "Completed"
+    },
+    {
+      "number": "NEJ20089934122229",
+      "sender": "Irvine",
+      "receiver": "Norfolk",
+      "item": "Smart Thermostat",
+      "eta": "1 day",
+      "status": "Cancelled"
+    },
+    {
+      "number": "NEJ20089934122230",
+      "sender": "Garland",
+      "receiver": "Fremont",
+      "item": "Wi-Fi Range Extender",
+      "eta": "3 days",
+      "status": "Loading"
+    }
   ],
   "vehicles": [
     {
