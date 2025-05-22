@@ -61,7 +61,6 @@ import com.vectorinc.moniepointchallenge.theme.MoniePointChallengeTheme
 import com.vectorinc.moniepointchallenge.theme.TopSectionPurple
 import com.vectorinc.moniepointchallenge.ui.Screen
 
-@OptIn
 @Composable
 fun ShipmentTrackingScreen(
     navController: NavController,
